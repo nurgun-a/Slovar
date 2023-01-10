@@ -9,6 +9,7 @@
 #include <algorithm>
 #include <regex>
 #include <cctype>
+#include <functional>
 
 
 using namespace std;

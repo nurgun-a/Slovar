@@ -3,6 +3,7 @@
 void read(map<string, int>& L)
 {
     ifstream fin;
+    locale locRus("RUS");
     string str;
     regex reg(R"([.,\/#!$%\^&\*;:{}=\Ђї"-_~Ч()])");
     fin.open("input2.txt", ios::in, ios::binary);
@@ -14,8 +15,9 @@ void read(map<string, int>& L)
     {
         while (fin >> str)
         {            
-            //transform(str.begin(), str.end(), str.begin(), ::tolower);            
+            transform(str.begin(), str.end(), str.begin(), bind1st(mem_fun(&ctype<char>::tolower), &use_facet<std::ctype<char> >(locRus)));//в нижний регистр     
             str = regex_replace(str, reg, "");
+            //transform(str.begin(), str.end(), str.begin(), ::tolower);
             L[str]++;
         }
     }
